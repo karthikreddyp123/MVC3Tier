@@ -1,0 +1,39 @@
+﻿@model BusinessObjects.StudentBO
+@{
+    ViewBag.Title = "Add Student";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("Add","Student",FormMethod.Post))
+{
+<div class="container">
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.StudentName, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.StudentName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model=>model.StudentName,null,new { @class="text-danger"})
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.EmailID, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.EmailID, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.EmailID, null, new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Marks, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Marks, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <input type="submit" value="Save" name="Save" class="btn btn-primary" />
+        </div>
+    </div>
+</div>
+}
+
