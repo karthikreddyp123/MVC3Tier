@@ -14,13 +14,13 @@ namespace WebApplication.CustomBinder
             string strStudentName = requestBase.Form.Get("StudentName");
             string strStudentMarks = requestBase.Form.Get("Marks");
             string strEmailID = requestBase.Form.Get("EmailID");
+            StudentBO studentBO = new StudentBO();
+            studentBO.StudentName = strStudentName;
+            studentBO.EmailID = strEmailID;
+            studentBO.Marks = Convert.ToInt32(strStudentMarks);
 
-            return new StudentBO
-            {
-                StudentName = strStudentName,
-                EmailID = strEmailID,
-                Marks = Convert.ToInt32(strStudentMarks)
-            };
+                return studentBO;
+         
         }
     }
 }

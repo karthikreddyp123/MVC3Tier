@@ -18,7 +18,7 @@ namespace WebApplication
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IStudentBL,StudentBL>();
             container.RegisterType<IStudentBO, StudentBO>();
-            //container.RegisterType<IStudentDAL, StudentsDAL>();
+            container.RegisterType<IStudentDAL, StudentsDAL>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
