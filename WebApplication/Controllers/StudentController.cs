@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication.CustomBinder;
 
 namespace WebApplication.Controllers
 {
@@ -12,30 +13,28 @@ namespace WebApplication.Controllers
     {
         // GET: Student
         private readonly IStudentBL _iStudentBL;
-        private readonly IStudentBO _iStudentBO;
-        public StudentController(IStudentBL istudentBL,IStudentBO istudentBO)
+        public StudentController(IStudentBL istudentBL)
         {
             _iStudentBL = istudentBL;
-            _iStudentBO = istudentBO;
         }
         public ActionResult Add()
         {
             return View();
         }
         [HttpPost]
-        public ActionResult Add(StudentBO studentBO)
+        public ActionResult Add([ModelBinder(typeof(StudentBinder))]IStudentBO studentBO)
         {
             if (ModelState.IsValid)
             {
                 CustomMessage customMessage = new CustomMessage();
                 customMessage = _iStudentBL.AddStudent(studentBO);
+                //ViewBag.CustomMessage = customMessage.MessageNumber.ToString();
+                return RedirectToAction("Index");
             } 
             return View(studentBO);
         }
         public ActionResult Index()
-        {
-            //StudentBL studentBL = new StudentBL();
-            
+        {            
             return View(_iStudentBL.GetStudents());
         }
         public ActionResult Edit()

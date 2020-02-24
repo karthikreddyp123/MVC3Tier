@@ -13,10 +13,10 @@ namespace DataAccess
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class StudentsEntities : DbContext
+    public partial class StudentEntities : DbContext
     {
-        public StudentsEntities()
-            : base("name=StudentsEntities")
+        public StudentEntities()
+            : base("name=StudentEntities")
         {
         }
     
@@ -25,6 +25,6 @@ namespace DataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<StudentTable> StudentTables { get; set; }
+        public virtual DbSet<Student> Students { get; set; }
     }
 }

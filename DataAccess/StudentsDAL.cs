@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 using BusinessObjects;
 namespace DataAccess
 {
-    public class StudentsDAL
+    public class StudentsDAL:IStudentDAL
     {
-        private StudentsEntities studentsEntities;
+        private StudentEntities studentsEntities;
         public StudentsDAL()
         {
-            studentsEntities = new StudentsEntities();
+            studentsEntities = new StudentEntities();
         }
         public CustomMessage AddStudent(IStudentBO studentBO)
         {
             CustomMessage customMessage = new CustomMessage();
-            StudentTable studentTable = new StudentTable()
+            Student studentTable = new Student()
             {
                 StudentName=studentBO.StudentName,
                 EmailID=studentBO.EmailID,
                 Marks=studentBO.Marks
             };
-            studentsEntities.StudentTables.Add(studentTable);
+            studentsEntities.Students.Add(studentTable);
             //studentsEntities.StudentTables.ToList<StudentTable>();
             int returnValue = studentsEntities.SaveChanges();
             if (returnValue > 0)
@@ -39,9 +39,9 @@ namespace DataAccess
         }
         public List<StudentBO> GetStudents()
         {
-            List<StudentTable> list = studentsEntities.StudentTables.ToList<StudentTable>();
+            List<Student> list = studentsEntities.Students.ToList<Student>();
             List<StudentBO> BOList = new List<StudentBO>();
-            foreach (StudentTable st in list)
+            foreach (Student st in list)
             {
                 StudentBO sb = new StudentBO()
                 {

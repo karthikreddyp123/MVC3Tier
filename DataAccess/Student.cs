@@ -12,7 +12,7 @@ namespace DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class StudentTable
+    public partial class Student
     {
         public int StudentID { get; set; }
         public string StudentName { get; set; }

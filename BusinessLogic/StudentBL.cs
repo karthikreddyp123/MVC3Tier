@@ -5,18 +5,25 @@ using System.Text;
 using System.Threading.Tasks;
 using BusinessObjects;
 using DataAccess;
+using Unity;
 
 namespace BusinessLogic
 {
     public class StudentBL:IStudentBL
     {
+        private readonly IStudentDAL _iStudentDAL;
+        public StudentBL(IStudentDAL studentDAL)
+        {
+            _iStudentDAL = studentDAL;
+        }
+        
         public CustomMessage AddStudent(IStudentBO studentBO)
         {
-            return new StudentsDAL().AddStudent(studentBO);
+            return _iStudentDAL.AddStudent(studentBO);
         }
         public List<StudentBO> GetStudents()
         {
-            return new StudentsDAL().GetStudents();
+            return _iStudentDAL.GetStudents();
         }
     }
 }

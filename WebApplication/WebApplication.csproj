@@ -142,6 +142,7 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="CustomBinder\StudentBinder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -211,6 +212,10 @@
     <ProjectReference Include="..\BusinessObjects\BusinessObjects.csproj">
       <Project>{ec558a26-c0a8-429e-9d15-b440bcf0a72a}</Project>
       <Name>BusinessObjects</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj">
+      <Project>{0dbbf7fd-2406-4733-afc0-d5ea8c6557a3}</Project>
+      <Name>DataAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

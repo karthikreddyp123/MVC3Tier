@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+using BusinessLogic;
 namespace WebApplication
 {
     public class MvcApplication : System.Web.HttpApplication
@@ -14,6 +14,7 @@ namespace WebApplication
         {
             AreaRegistration.RegisterAllAreas();
             UnityConfig.RegisterComponents();
+            BusinessUnityConfig.BusinessRegisterComponents();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
