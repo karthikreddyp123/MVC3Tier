@@ -7,6 +7,7 @@
 
 <h2>Index</h2>
 
+@ViewData["CustomMessage"];
 <p>
     @Html.ActionLink("Create New", "Add")
 </p>
@@ -27,26 +28,41 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmailID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Marks)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marks)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
 
 </table>
+@section scripts{
+    <script>
+        $(function (){
+            var successMessage = '@TempData["CustomMessage"]'
+            if (successMessage != 'Please Enter correct Details'&& successMessage !='')
+                alertify.success(successMessage);
+            else if (successMessage != '')
+                alertify.error(successMessage);
+            else {
+
+            }
+        });
+    </script>
+    }

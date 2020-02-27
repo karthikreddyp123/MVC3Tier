@@ -13,9 +13,13 @@ namespace WebApplication.Controllers
     {
         // GET: Student
         private readonly IStudentBL _iStudentBL;
-        public StudentController(IStudentBL istudentBL)
+        private ICustomMessage _customMessage;
+        private readonly IStudentBO _studentBO;
+        public StudentController(IStudentBL istudentBL,ICustomMessage customMessage,IStudentBO studentBO)
         {
+            _customMessage = customMessage;
             _iStudentBL = istudentBL;
+            _studentBO = studentBO;
         }
         public ActionResult Add()
         {
@@ -26,15 +30,20 @@ namespace WebApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                CustomMessage customMessage = new CustomMessage();
-                customMessage = _iStudentBL.AddStudent(studentBO);
-                //ViewBag.CustomMessage = customMessage.MessageNumber.ToString();
-                return RedirectToAction("Index");
+                _customMessage = _iStudentBL.AddStudent(studentBO);
+                TempData["MessageNumber"] = _customMessage.MessageNumber.ToString();
+                TempData["CustomMessage"] = _customMessage.Message.ToString();
+                if (_customMessage.MessageNumber == 1)
+                {
+                    return RedirectToAction("Index");
+                }
             } 
             return View(studentBO);
         }
         public ActionResult Index()
-        {            
+        {
+
+            ViewData["CustomMessage"] = TempData["CustomMessage"];
             return View(_iStudentBL.GetStudents());
         }
         public ActionResult Edit()

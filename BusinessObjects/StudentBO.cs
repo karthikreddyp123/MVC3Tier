@@ -9,6 +9,7 @@ namespace BusinessObjects
 {
     public class StudentBO:IStudentBO
     {
+        //Setting Model properties
         public int StudentID { get; set; }
         [Required(ErrorMessage ="User Name is Required")]
         [Display(Name ="Student Name")]

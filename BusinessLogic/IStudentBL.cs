@@ -9,7 +9,7 @@ namespace BusinessLogic
 {
     public interface IStudentBL
     {
-        CustomMessage AddStudent(IStudentBO studentBO);
+        ICustomMessage AddStudent(IStudentBO studentBO);
         List<StudentBO> GetStudents();
     }
 }

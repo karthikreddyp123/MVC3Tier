@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusinessObjects
 {
-    public class CustomMessage
+    //This class is used to store Custom Messages
+    public class CustomMessage:ICustomMessage
     {
         public int MessageNumber { get; set; }
         public String Message { get; set; }

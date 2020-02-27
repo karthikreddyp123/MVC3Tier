@@ -8,7 +8,7 @@ namespace DataAccess
 {
     public interface IStudentDAL
     {
-        CustomMessage AddStudent(IStudentBO studentBO);
+        ICustomMessage AddStudent(IStudentBO studentBO);
         List<StudentBO> GetStudents();
     }
 }

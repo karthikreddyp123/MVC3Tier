@@ -11,7 +11,7 @@ namespace DataAccess
 {
     using System;
     using System.Collections.Generic;
-    
+    //Model class with properties
     public partial class Student
     {
         public int StudentID { get; set; }

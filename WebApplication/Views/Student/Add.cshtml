@@ -3,37 +3,54 @@
     ViewBag.Title = "Add Student";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h2>New Student Registration</h2>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<h2>Index</h2>
 
-@using (Html.BeginForm("Add","Student",FormMethod.Post))
+
+@using (Html.BeginForm("Add", "Student", FormMethod.Post, new { name = "form1", id = "form1" }))
 {
-<div class="container">
-    <div class="row">
-        <div class="form-group">
-            @Html.LabelFor(model => model.StudentName, new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.StudentName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model=>model.StudentName,null,new { @class="text-danger"})
+    <div class="container">
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.StudentName, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.StudentName, new { @class = "form-control", data_message = "StudentName" })
+                <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+                @Html.ValidationMessageFor(model => model.StudentName, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmailID, new { @class = "control-label" })
+                @Html.TextBoxFor(model => model.EmailID, new { @class = "form-control", data_message = "EmailID" })
+                <asp:Label ID="Label5" runat="server" Text=""></asp:Label>
+                @Html.ValidationMessageFor(model => model.EmailID, null, new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Marks, new { @class = "control-label" })
+                <asp:Label ID="Label6" runat="server" Text=""></asp:Label>
+                @Html.TextBoxFor(model => model.Marks, new { @class = "form-control", data_message = "Marks" })
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group">
+                <input type="submit" value="Save" name="Save" class="btn btn-primary" />
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="form-group">
-            @Html.LabelFor(model => model.EmailID, new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.EmailID, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.EmailID, null, new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group">
-            @Html.LabelFor(model => model.Marks, new { @class = "control-label" })
-            @Html.TextBoxFor(model => model.Marks, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="row">
-        <div class="form-group">
-            <input type="submit" value="Save" name="Save" class="btn btn-primary" />
-        </div>
-    </div>
-</div>
 }
+@*@section scripts{
+    <script>
+        $(function (){
+            var successMessage = '@TempData["MessageNumber"]'
+            if (successMessage =='0')
+                alertify.error("Please Enter Valid Data");
+        });
+    </script>
+}*@
+
+
+
 

@@ -3,7 +3,8 @@ using Unity;
 using Unity.Mvc5;
 using BusinessObjects;
 using BusinessLogic;
-using DataAccess;
+using System.ComponentModel;
+
 namespace WebApplication
 {
     public static class UnityConfig
@@ -18,7 +19,8 @@ namespace WebApplication
             // e.g. container.RegisterType<ITestService, TestService>();
             container.RegisterType<IStudentBL,StudentBL>();
             container.RegisterType<IStudentBO, StudentBO>();
-            container.RegisterType<IStudentDAL, StudentsDAL>();
+            container.RegisterType<ICustomMessage, CustomMessage>();
+            container.AddNewExtension<BusinessUnityConfig>();
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
